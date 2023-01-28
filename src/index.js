@@ -1,17 +1,80 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+class Timer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { n: this.props.secs }
+    }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+    componentDidMount() {
+        this.timer = setInterval(
+            () => this.tickfn(),
+            1000
+        )
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer)
+    }
+
+    tickfn() {
+        this.setState({
+            n: this.state.n - 1
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                {this.state.n <= 0 ? (
+                    <h1>Done</h1>
+                ) : (
+                    <h1>{this.state.n}</h1>
+                )}
+
+            </div>
+        )
+    }
+}
+
+class Main extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { secs: 1, subm: false };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        this.setState({ subm: true })
+        console.log(this.state.subm);
+    }
+
+    handleChange(event) {
+        var target = event.target;
+        var val = target.value;
+        this.setState({ secs: Number(val) });
+    }
+
+    render() {
+        return (
+            <div>
+                {this.state.subm ? (
+                    <Timer secs={this.state.secs} />
+                ) :
+                    (
+                        <form onSubmit={this.handleSubmit}>
+                            <input name="secs" type="number" onChange={this.handleChange} value={this.state.secs}></input>
+                            <button type="submit">Submit</button>
+                        </form>
+                    )}
+            </div>
+        )
+    }
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Main />);
