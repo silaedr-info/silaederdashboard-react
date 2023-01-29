@@ -4,24 +4,15 @@ import './index.css';
 import { Grommet, Header, Button, Menu, Avatar, Sidebar, Nav, Heading, Main, Paragraph, Tab, Box, Tabs, Meter, Stack, Text, DataTable, TextInput, FormField, Form } from 'grommet';
 import * as Icons from 'grommet-icons'
 import Frame from 'react-frame-component';
-
-const theme = {
-    global: {
-        font: {
-            family: "Montserrat",
-            size: "18px",
-            height: "20px",
-        },
-    },
-};
+import { hpe } from 'grommet-theme-hpe';
 
 class Main2 extends React.Component {
 
     render() {
         return (
-            <Grommet theme={theme} full>
+            <Grommet theme={hpe} themeMode="light" full>
                 <Main pad="large" style={{ display: 'flex', flexDirection: 'row' }}>
-                    <Sidebar background="brand" round="small" style={{ position: 'sticky', top: '0' }}
+                    <Sidebar background='light-1' round="small" style={{ position: 'sticky', top: '0' }}
                         header={
                             <div>
                                 <Heading className='Header' level="3">Silaeder Dashboard</Heading>
@@ -68,7 +59,7 @@ class SilaederSrv extends React.Component {
         var diskPercent = diskused / diskall * 100;
 
         return (
-            <Grommet theme={theme} className='cntr' >
+            <Grommet theme={hpe} themeMode="light" className='cntr' >
                 <Tabs>
                     <Tab title="Главная">
                         <Box direction='row'>
