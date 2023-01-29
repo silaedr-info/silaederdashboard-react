@@ -1,9 +1,8 @@
-from flask import Flask, request, render_template, url_for, redirect, send_from_directory
+from flask import Flask, request, url_for, redirect
 from gevent.pywsgi import WSGIServer
 from db import DB
 from api import API
 from srv import Srv
-import os
 
 app = Flask(__name__)
 authed = {
@@ -15,7 +14,6 @@ api = API(app)
 srv = Srv(app, api, api.ssh_config)
 
 
-@app.before_request
 def ccheck():
     ip = request.remote_addr
     if request.path.split('/')[1] not in ['login', 'static']:
@@ -26,11 +24,12 @@ def ccheck():
                 return redirect('/login')
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/check', methods=['GET', 'POST'])
 def login():
-    elif request.method == 'POST':
-        authed.update({ip: {'username': request.form.get('user'), 'password': request.form.get('password')}})
-        return redirect('/')
+    if db.check_user(**{'username': request.form.get('user'), 'password': request.form.get('password')}):
+        return "true"
+    else:
+        return 'false'
 
 
 if __name__ == '__main__':
