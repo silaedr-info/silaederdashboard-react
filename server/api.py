@@ -18,7 +18,7 @@ grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}'
 netstat -ntlp | awk '{print $4}'""".split('\n')
         self.data = self.get_data()
 
-        @app.route('/api/srv/')
+        @app.route('/api/srv/stats')
         def srv():
             self.data = self.get_data()
 
