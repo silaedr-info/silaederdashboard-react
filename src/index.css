@@ -1,33 +1,3 @@
-.Header {
-    margin: 0;
-    margin-bottom: -1rem;
-    margin-top: 1rem;
-    text-align: center;
-}
-
-.footerFlex {
-    display: flex;
-    justify-content: center;
-}
-
-.blur {
-    filter: blur(1px);
-}
-
-.maincnt {
-    width: 77% !important;
-}
-
-.mt10 {
-    margin-top: 10px;
-}
-
-.cntr {
-    display: flex;
-    justify-content: center;
-}
-
-.cmd {
-    background-color: white !important;
-    color: black !important;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

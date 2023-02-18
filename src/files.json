@@ -1,0 +1,19 @@
+{
+    "currently_in": "/home/user/nodejs_project",
+
+    "node_modules": {
+        "size": "1 GB",
+        "type": "directory",
+        "last_edited": "10 hours ago"
+    },
+    "index.js": {
+        "size": "2 KB",
+        "type": "file",
+        "last_edited": "5 hours ago"
+    },
+    "README.md": {
+        "size": "4 KB",
+        "type": "file",
+        "last_edited": "10 hours ago"
+    }
+}
