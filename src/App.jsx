@@ -4,7 +4,7 @@ import { Home } from './Home';
 
 function App() {
     return (
-        <div className='w-screen h-screen'>
+        <div className='w-full h-screen'>
             <nav className='flex w-full justify-between p-4 fixed top-0 items-center z-10 backdrop-blur-md'>
                 <h1 className='font-bold text-xl cursor-default'>Silaeder Dashboard</h1>
                 <div className='flex items-center'>

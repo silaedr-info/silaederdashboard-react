@@ -71,7 +71,7 @@ function SideBarLink(props) {
 function CardList(props) {
     return (
         <div className={props.className+" dark:bg-gray-700 dark:hover:bg-gray-600 dark:shadow-slate-800 dark:hover:shadow-gray-800 bg-gray-100 rounded-lg p-7 shadow-md hover:shadow-xl hover:bg-gray-200 hover:bg-opacity-70 transition-all ease-in-out duration-500 flex flex-row items-center"}>
-            <div className="flex items-center flex-col w-full">
+            <div className="flex items-center flex-col">
                 <h1 className="text-2xl font-medium dark:text-gray-300 text-center">{props.name}</h1>
                 <h3 className="dark:text-gray-300">{props.desc}</h3>
             </div>
