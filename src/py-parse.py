@@ -12,12 +12,22 @@ posts = api.wall.get(
     domain='silaedr',
 )
 
+link = "https://vk.com/silaedr?w="
+
 postsDict = {}
 for i in range(0, 5):
     if (posts['items'][i]['text'][0:116].count("\n") > 0):
-        postsDict.update({str(i): posts['items'][i]['text'][0:posts['items'][i]['text'].find("\n")]})
+        postsDict.update(
+            {str(i): posts['items'][i]['text'][0:posts['items'][i]['text'].find("\n")]})
     else:
         postsDict.update({str(i): posts['items'][i]['text'][0:116]+"..."})
+
+    owner_id = posts['items'][i]['owner_id']
+    media_id = posts['items'][i]['id']
+
+    postsDict.update({str(i)+"lnk":link+f"wall{owner_id}_{media_id}"})
+
+
 
 with open("public/posts.json", "w") as f:
     json.dump(postsDict, f, ensure_ascii=False)
