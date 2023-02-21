@@ -8,7 +8,6 @@ import time
 
 app = Flask(__name__)
 authed = {
-    '127.0.0.1': {'username': 'max', 'password': 'rjlbnm2010'}
 }
 dev = True
 db = DB()

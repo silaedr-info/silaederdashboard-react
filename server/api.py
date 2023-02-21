@@ -12,10 +12,6 @@ class API:
         self.ssh_sil.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         self.ssh_sil.connect(hostname=self.ssh_config['host'], port=self.ssh_config['port'],
                              password=self.ssh_config['password'], username=self.ssh_config['user'])
-        commands = """cat /proc/meminfo | grep MemTotal | awk '{print $2/1024}'
-cat /proc/meminfo | grep MemFree | awk '{print $2/1024}'
-grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage}'
-netstat -ntlp | awk '{print $4}'""".split('\n')
         self.data = self.get_data()
 
         @app.route('/api/srv/stats')
