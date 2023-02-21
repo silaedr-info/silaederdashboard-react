@@ -8,7 +8,7 @@ function News() {
 
     function setpst(json) {
         for (var i = 0; i < 5; i++) {
-            posts.push([json[i], json[i+"lnk"]])
+            posts.push([json[i], json[i + "lnk"]])
         }
 
         if (!set) {
@@ -34,7 +34,7 @@ function News() {
                     {pst.map((el) => (
                         <CardListItem contents={<a target="_blank" rel="noreferrer" className="underline transition-all ease-in-out duration-500 hover:text-gray-300" href={el[1]}>{el[0]}</a>} />
                     ))}
-                    
+
                 </div>
             } />
         </div>
