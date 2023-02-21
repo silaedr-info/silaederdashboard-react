@@ -1,12 +1,14 @@
 from vk_api import VkApi
 from vk_api.utils import get_random_id
 from secrets import API_KEY
-import json, time
+import json, time, os
 
 ACCESS_TOKEN = API_KEY
 
 vkSession = VkApi(token=ACCESS_TOKEN)
 api = vkSession.get_api()
+
+os.system("touch public/posts.json")
 
 while (True):
     posts = api.wall.get(
