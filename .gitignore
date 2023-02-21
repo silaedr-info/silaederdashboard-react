@@ -23,5 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 /.idea
 config/server_ssh.yaml
-db
-db/data.db
+/db
+#db/data.db
