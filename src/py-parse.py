@@ -11,6 +11,7 @@ api = vkSession.get_api()
 while (True):
     posts = api.wall.get(
         domain='silaedr',
+        count=5
     )
 
     link = "https://vk.com/silaedr?w="
