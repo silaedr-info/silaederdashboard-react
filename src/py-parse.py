@@ -1,11 +1,7 @@
-import json
-import os
-import time
-
 from vk_api import VkApi
 from vk_api.utils import get_random_id
-
 from secrets import API_KEY
+import json, time, os
 
 ACCESS_TOKEN = API_KEY
 
@@ -22,11 +18,10 @@ while (True):
 
     postsDict = {}
     for i in range(0, 5):
-        if (posts['items'][i]['text'][0:116].count("\n") > 0):
-            postsDict.update(
-                {str(i): posts['items'][i]['text'][0:posts['items'][i]['text'].find("\n")]})
+        if '\n' in posts['items'][i]['text'][:116]:
+            postsDict[i] = posts['items'][i]['text'][:posts['items'][i]['text'].find("\n")]
         else:
-            postsDict.update({str(i): posts['items'][i]['text'][0:116]+"..."})
+            postsDict[i] = posts['items'][i]['text'][:116]+"..."
 
         owner_id = posts['items'][i]['owner_id']
         media_id = posts['items'][i]['id']
