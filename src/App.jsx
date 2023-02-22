@@ -4,17 +4,6 @@ import { Home } from './Home';
 import { useState } from 'react';
 
 function App() {
-    const [active, setActive] = useState([true, false, false, false, false])
-
-    function SideBarActive(n) {
-        var tmp = [false, false, false, false, false];
-
-        tmp[n] = true;
-
-        console.log(tmp)
-        setActive(tmp);
-    }
-
     return (
         <div className='w-full h-screen'>
             <nav className='flex w-full justify-between p-4 fixed top-0 items-center z-10 backdrop-blur-md'>
@@ -27,7 +16,7 @@ function App() {
             <div className="pt-20 h-full flex w-full">
                 <SideBar className="fixed" content={
                     <div>
-                        <SideBarLink text="Главная" onClick={() => { SideBarActive(0) }} active={true} />
+                        <SideBarLink text="Главная" active={true} />
                         <SideBarLink text="Silaeder Server" className="mt-5" active={false} />
                         <SideBarLink text="Silaeder Conference" className="mt-5" active={false} />
                         <SideBarLink text="Генератор дипломов" className="mt-5" active={false} />
