@@ -25,3 +25,9 @@ yarn-error.log*
 
 public/posts.json
 src/__pycache__
+config/server_ssh.yaml
+/db
+#db/data.db
+
+public/posts.json
+src/__pycache__
