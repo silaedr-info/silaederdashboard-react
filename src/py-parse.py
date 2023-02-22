@@ -8,8 +8,6 @@ ACCESS_TOKEN = API_KEY
 vkSession = VkApi(token=ACCESS_TOKEN)
 api = vkSession.get_api()
 
-os.system("touch public/posts.json")
-
 while (True):
     posts = api.wall.get(
         domain='silaedr',
@@ -34,6 +32,7 @@ while (True):
 
 
     with open("public/posts.json", "w") as f:
+        f.write("")
         json.dump(postsDict, f, ensure_ascii=False)
     
     time.sleep(3600)
