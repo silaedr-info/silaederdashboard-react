@@ -1,19 +1,40 @@
 import { CardListItem, CardList } from "./Components"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 function News() {
+    const posts = [];
+    const [pst, setPst] = useState([]);
+    var set = false;
 
+    function setpst(json) {
+        for (var i = 0; i < 5; i++) {
+            posts.push([json[i], json[i + "lnk"]])
+        }
+
+        if (!set) {
+            setPst(posts);
+        }
+
+        return 0;
+    }
+
+    /* eslint-disable */
+    useEffect(() => {
+        fetch("/posts.json").then((resp) => resp.json()).then((data) => {
+            setpst(data);
+        });
+        set = false;
+    }, [])
+    /* eslint-enable */
 
     return (
         <div>
-            <CardList className="mt-5 mb-10 w-full" name="Новости" desc={
+            <CardList className="mt-5 mb-10" name="Новости" desc={
                 <div>
-                    <CardListItem contents={<a target="_blank" rel="noreferrer" className="underline transition-all ease-in-out duration-500 hover:text-prelg" href="https://vk.com/silaedr?w=wall-144869743_3681">В рамках уроков «Разговоры о важном» лицей НИУ ВШЭ пригласил наших 11-классниц Дашу и Наташу рассказать о своем проекте</a>} />
-                    <CardListItem contents={<a target="_blank" rel="noreferrer" className="underline transition-all ease-in-out duration-500 hover:text-prelg" href="https://vk.com/silaedr?w=wall-144869743_3680">5 и 6 классы Силаэдра посетили Царь-макет на ВДНХ Экскурсия была увлекательной. Всем очень понравилось.</a>} />
-                    <CardListItem contents={<a target="_blank" rel="noreferrer" className="underline transition-all ease-in-out duration-500 hover:text-prelg" href="https://vk.com/silaedr?w=wall-144869743_3678">Мастер-класс руководителя it-отдела компании Встреча с Игорем Котляром, руководителем IT- департамента компании BUDU "Ренессанс Страхование"</a>} />
-                    <CardListItem contents={<a target="_blank" rel="noreferrer" className="underline transition-all ease-in-out duration-500 hover:text-prelg" href="https://vk.com/silaedr?w=wall-144869743_3676">5 и 6 классы обсуждают компьютерную безопасность и цифровую гигиену.
-                        В этот раз по впечатлениям Никиты и Льва после прочтения книги Кевина Митника «Искусство быть невидимым»</a>} />
-                    <CardListItem contents={<a target="_blank" rel="noreferrer" className="underline transition-all ease-in-out duration-500 hover:text-prelg" href="https://vk.com/silaedr?w=wall-144869743_3670">Еще несколько слов о Конференции Силаэдр. Статистика участников и победителей конкурса по годам.</a>} />
+                    {pst.map((el) => (
+                        <CardListItem contents={<a target="_blank" rel="noreferrer" className="underline transition-all ease-in-out duration-500 hover:text-gray-300" href={el[1]}>{el[0]}</a>} />
+                    ))}
+
                 </div>
             } />
         </div>
