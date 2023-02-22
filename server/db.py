@@ -47,7 +47,7 @@ class DB:
         selection = self.conn.execute(selection).all()
         if len(selection) != 0:
             user = selection[0]
-            if user[2] == md5(password):
+            if user[2] == password:
                 return True
         return False
     
