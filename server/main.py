@@ -46,7 +46,6 @@ def ccheck():
 @app.route('/api/auth', methods=['GET', 'POST'])
 def login():
     if request.method == "POST":
-        print({'username': request.form.get('user'), 'password': request.form.get('password')})
         if db.check_user(**{'username': request.form.get('user'), 'password': request.form.get('password')}):
             return "true"
         else:

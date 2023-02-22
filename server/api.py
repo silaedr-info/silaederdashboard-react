@@ -24,7 +24,6 @@ class API:
 
         @app.route('/api/marks/plusnik', methods=['GET'])
         def plusnik():
-            print(jsonify(get_mark(request.args['student'])))
             return jsonify(get_mark(request.args['student']))
 
     def ssh_command(self, cmd, sudo=False):
