@@ -1,6 +1,8 @@
 import paramiko
 import yaml
 import json
+from marks.plusnik import get_mark
+from flask import request, jsonify
 
 
 class API:
@@ -19,6 +21,11 @@ class API:
             self.data = self.get_data()
 
             return json.dumps(self.data)
+
+        @app.route('/api/marks/plusnik', methods=['GET'])
+        def plusnik():
+            print(jsonify(get_mark(request.args['student'])))
+            return jsonify(get_mark(request.args['student']))
 
     def ssh_command(self, cmd, sudo=False):
         if sudo:

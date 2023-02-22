@@ -43,7 +43,7 @@ def ccheck():
                 return redirect('/login')
 
 
-@app.route('/api/check', methods=['GET', 'POST'])
+@app.route('/api/auth', methods=['GET', 'POST'])
 def login():
     if request.method == "POST":
         print({'username': request.form.get('user'), 'password': request.form.get('password')})
