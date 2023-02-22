@@ -24,3 +24,4 @@ yarn-error.log*
 /.idea
 
 public/posts.json
+src/__pycache__
