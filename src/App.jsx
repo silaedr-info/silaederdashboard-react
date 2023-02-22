@@ -1,7 +1,6 @@
 import { SideBar, SideBarLink } from './Components'
 import { IoMdNotifications } from 'react-icons/io'
 import { Home } from './Home';
-import { AutoDiploma } from './AutoDiploma';
 import { useState } from 'react';
 
 function App() {
@@ -28,20 +27,15 @@ function App() {
             <div className="pt-20 h-full flex w-full">
                 <SideBar className="fixed" content={
                     <div>
-                        <SideBarLink text="Главная" onClick={() => { SideBarActive(0) }} active={active[0]} />
-                        <SideBarLink text="Silaeder Server" className="mt-5" onClick={() => { SideBarActive(1) }} active={active[1]} />
-                        <SideBarLink text="Silaeder Conference" className="mt-5" onClick={() => { SideBarActive(2) }} active={active[2]} />
-                        <SideBarLink text="Генератор дипломов" className="mt-5" onClick={() => { SideBarActive(3) }} active={active[3]} />
-                        <SideBarLink text="Оценки и расписание" className="mt-5" onClick={() => { SideBarActive(4) }} active={active[4]} />
+                        <SideBarLink text="Главная" onClick={() => { SideBarActive(0) }} active={true} />
+                        <SideBarLink text="Silaeder Server" className="mt-5" active={false} />
+                        <SideBarLink text="Silaeder Conference" className="mt-5" active={false} />
+                        <SideBarLink text="Генератор дипломов" className="mt-5" active={false} />
+                        <SideBarLink text="Оценки и расписание" className="mt-5" active={false} />
                     </div>
                 } />
-                {active[0] &&
-                    <Home className=" w-7/12 sm:w-4/5 absolute right-4" />
-                }
-
-                {active[3] &&
-                    <AutoDiploma className=" w-7/12 sm:w-4/5 absolute right-4" />
-                }
+                
+                <Home className=" w-7/12 sm:w-4/5 absolute right-4" />
             </div>
         </div>
     )

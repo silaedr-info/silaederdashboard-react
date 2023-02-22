@@ -32,7 +32,7 @@ function News() {
             <CardList className="mt-5 mb-10" name="Новости" desc={
                 <div>
                     {pst.map((el) => (
-                        <CardListItem contents={<a target="_blank" rel="noreferrer" className="transition-all ease-in-out duration-500 hover:text-blue-300 text-blue-100" href={el[1]}>{el[0]}</a>} />
+                        <CardListItem contents={<a target="_blank" rel="noreferrer" className="transition-all ease-in-out duration-500 hover:text-white text-blue-100" href={el[1]}>{el[0]}</a>} />
                     ))}
 
                 </div>
