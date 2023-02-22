@@ -4,6 +4,12 @@ function Button(props) {
     )
 }
 
+function ButtonSubmit(props) {
+    return (
+        <button onClick={props.onClick} type="submit" className={props.className + ' p-3 rounded-lg text-white hover:bg-gray-800 bg-black transition-all duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl dark:bg-gray-300 dark:text-black dark:hover:bg-white dark:hover:shadow-gray-700'}>{props.text}</button>
+    )
+}
+
 function ButtonSimple(props) {
     return (
         <button onClick={props.onClick} className={props.className + ' p-3 rounded-lg text-white hover:bg-gray-800 bg-black transition-all duration-500 ease-in-out transform hover:shadow-2xl dark:bg-gray-300 dark:text-black dark:hover:bg-white dark:hover:shadow-gray-700'}>{props.text}</button>
@@ -87,4 +93,16 @@ function CardListItem(props) {
     )
 }
 
-export { Button, Link, Card, CardCustom, ButtonSimple, SideBar, SideBarLink, CardList, CardListItem }
+function Input(props) {
+    return (
+        <input type={props.type} className={props.className + " border-solid border-gray-400 hover:border-gray-600 focus:border-gray-600 outline-none border-2 rounded-lg p-2 transition-all ease-in-out duration-300 focus:shadow-lg"} name={props.name} />
+    )
+}
+
+function InputFile(props) {
+    return (
+        <input type="file" className={props.className + " "} />
+    )
+}
+
+export { Button, Link, Card, CardCustom, ButtonSimple, SideBar, SideBarLink, CardList, CardListItem, Input, ButtonSubmit, InputFile }
