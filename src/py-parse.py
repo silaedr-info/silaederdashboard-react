@@ -1,7 +1,11 @@
+import json
+import os
+import time
+
 from vk_api import VkApi
 from vk_api.utils import get_random_id
+
 from secrets import API_KEY
-import json, time, os
 
 ACCESS_TOKEN = API_KEY
 
