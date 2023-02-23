@@ -126,7 +126,7 @@ function Checkbox(props) {
 
 function InputFile(props) {
     return (
-        <input type="file" className={props.className + " border-none outline-none border-2 rounded-lg transition-all ease-in-out duration-300 focus:shadow-lg file:p-2 file:rounded-lg file:text-white hover:file:bg-gray-800 file:bg-gray-600 file:transition-all file:duration-500 file:ease-in-out file:transform hover:file:-translate-y-1 hover:file:shadow-2xl dark:file:bg-gray-300 dark:file:text-gray-600 dark:hover:file:bg-white dark:hover:file:shadow-gray-700 file:mt-2 file:border-none file:cursor-pointer file:mr-3"} />
+        <input type="file" className={props.className + " border-none outline-none border-2 rounded-lg transition-all ease-in-out duration-300 focus:shadow-lg file:p-2 file:rounded-lg file:text-white hover:file:bg-gray-800 file:bg-gray-600 file:transition-all file:duration-500 file:ease-in-out file:transform hover:file:-translate-y-1 hover:file:shadow-2xl dark:file:bg-gray-300 dark:file:text-gray-600 dark:hover:file:bg-white dark:hover:file:shadow-gray-700 file:mt-2 file:border-none file:cursor-pointer file:mr-3 max-sm:text-white"} />
     )
 }
 
