@@ -1,7 +1,6 @@
 import { SideBar, SideBarLink } from './Components'
 import { IoMdNotifications } from 'react-icons/io'
 import { Home } from './Home';
-import { LoginPage } from './Login';
 
 function App() {
     return (
@@ -24,9 +23,7 @@ function App() {
                     </div>
                 } />
                 
-                {/* <Home className=" w-7/12 sm:w-4/5 absolute right-4" /> */}
-
-                <LoginPage className="absolute top-0 w-screen h-screen z-20" />
+                <Home className=" w-7/12 sm:w-4/5 absolute right-4" />
             </div>
         </div>
     )

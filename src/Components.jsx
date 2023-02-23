@@ -1,6 +1,14 @@
+import { useState } from "react"
+
 function Button(props) {
     return (
         <button onClick={props.onClick} className={props.className + ' p-3 rounded-lg text-white hover:bg-gray-800 bg-black transition-all duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl dark:bg-gray-300 dark:text-black dark:hover:bg-white dark:hover:shadow-gray-700'}>{props.text}</button>
+    )
+}
+
+function ButtonSubmit(props) {
+    return (
+        <button onClick={props.onClick} type="submit" className={props.className + ' p-3 rounded-lg text-white hover:bg-gray-800 bg-black transition-all duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl dark:bg-gray-300 dark:text-black dark:hover:bg-white dark:hover:shadow-gray-700'}>{props.text}</button>
     )
 }
 
@@ -87,4 +95,55 @@ function CardListItem(props) {
     )
 }
 
-export { Button, Link, Card, CardCustom, ButtonSimple, SideBar, SideBarLink, CardList, CardListItem }
+function Input(props) {
+    return (
+        <input type={props.type} className={props.className + " border-solid border-gray-400 hover:border-gray-600 focus:border-gray-600 outline-none border-2 rounded-lg p-2 text-lg transition-all ease-in-out duration-300 focus:shadow-lg"} name={props.name} disabled={props.disabled} />
+    )
+}
+
+function Checkbox(props) {
+    const [checked, setChecked] = useState(props.checked);
+
+    function clicked() {
+        if (checked === true) {
+            props.onClick(false);
+            setChecked(false);
+        } else {
+            props.onClick(true);
+            setChecked(true);
+        }
+    }
+
+    return (
+        <div className={props.className+" flex items-center"}>
+            <span className="mr-2">{props.text}</span>
+            <button type="button" className="w-6 h-6" onClick={() => {clicked()}}>
+                <img draggable={false} alt="checkbox" src={checked ? "/checked.svg" : "/not-checked.svg"} />
+            </button>
+        </div>
+    )
+}
+
+function InputFile(props) {
+    return (
+        <input type="file" className={props.className + " border-none outline-none border-2 rounded-lg transition-all ease-in-out duration-300 focus:shadow-lg file:p-2 file:rounded-lg file:text-white hover:file:bg-gray-800 file:bg-gray-600 file:transition-all file:duration-500 file:ease-in-out file:transform hover:file:-translate-y-1 hover:file:shadow-2xl dark:file:bg-gray-300 dark:file:text-gray-600 dark:hover:file:bg-white dark:hover:file:shadow-gray-700 file:mt-2 file:border-none file:cursor-pointer file:mr-3 max-sm:text-white"} />
+    )
+}
+
+function Tab(props) {
+    var selected = "";
+
+    if (props.selected) {
+        selected = " px-20 py-3 bg-black text-white";
+    } else {
+        selected = " text-white px-10 py-3 bg-gray-500 hover:bg-gray-600";
+    }
+
+    return (
+        <button type="button" onClick={props.onClick} className={props.className+" transition-all ease-in-out duration-700"+selected}>
+            {props.text}
+        </button>
+    )
+}
+
+export { Button, Link, Card, CardCustom, ButtonSimple, SideBar, SideBarLink, CardList, CardListItem, Input, ButtonSubmit, InputFile, Checkbox, Tab }
