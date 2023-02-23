@@ -38,7 +38,7 @@ def get_mark(student):
         for row in values:
             if row == []:
                 break
-            if row[0].lower().count(student.lower()) > 0:
+            if student.lower() in row[0].lower():
                 sum_marks = float(row[10].replace(',', '.'))
                 last_theme_mark = float(row[-1].replace(',', '.'))
         
