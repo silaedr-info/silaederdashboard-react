@@ -42,14 +42,14 @@ def get_mark(student):
                 sum_marks = float(row[10].replace(',', '.'))
                 last_theme_mark = float(row[-1].replace(',', '.'))
         
-        return sum_marks, last_theme_mark
+        return {
+            "sum_marks": sum_marks,
+            "last_theme_mark": last_theme_mark,
+
+            }
                 
 
 
 
     except HttpError as err:
         print(err)
-
-
-if __name__ == '__main__':
-    print(get_mark('таран'))

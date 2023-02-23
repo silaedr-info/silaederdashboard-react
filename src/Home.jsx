@@ -1,6 +1,9 @@
 import { Card, CardCustom, CardList, CardListItem } from "./Components"
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { GetMatprakPlusnikData } from "./Plusnik";
+import { useEffect } from "react";
+import { useState } from "react";
 
 function Home(props) {
     ChartJS.register(ArcElement, Tooltip, Legend);
@@ -36,7 +39,7 @@ function Home(props) {
         <div className={props.className + " ml-3"}>
             <div className="flex items-center flex-col sm:flex-row">
                 <Card className="mr-0 mb-5 sm:mr-5 sm:mb-0" name="Сводка" img_src="task.png" desc={<span>Оценки по предметам <strong>Алгебра, Русский язык</strong> стали лучше. На следующей неделе разбор листочка <strong>Вероятность</strong>. <strong>Поторопитесь</strong>, у Вас всё еще 0 баллов!</span>} />
-                <CardCustom className="text-center" name="Средняя оценка за неделю" desc={<Doughnut data={data} options={options} width="200" />} />
+                <CardCustom className="text-center" name="Средняя оценка за неделю" alt="" desc={<Doughnut data={data} options={options} width="200" />} />
             </div>
 
             <CardList className="mt-5 mb-10" name="Новости" desc={

@@ -3,10 +3,20 @@ import yaml
 import json
 from marks.plusnik import get_mark
 from flask import request, jsonify
+from datetime import datetime
+from apscheduler.schedulers.background import BackgroundScheduler
 
 
 class API:
-    def __init__(self, app):
+    def update_usercache(self):
+        select = self.db.conn.execute("SELECT username, password password FROM users").fetchall()
+        for i in select:
+            x = self.db.get_user_data(*i)
+            d = x['lastname'] + " " + x['firstname']
+            marks = get_mark(d)
+            self.db.conn.execute(f"INSERT INTO usermarkscache VALUES({x['user_id']}, '{str(datetime.now()).split('.')[0]}', '{marks['sum_marks']}')")
+
+    def __init__(self, app, get_user, db):
         self.app = app
         with open("../config/server_ssh.yaml", 'r') as stream:
             self.ssh_config = yaml.safe_load(stream)
@@ -15,16 +25,29 @@ class API:
         self.ssh_sil.connect(hostname=self.ssh_config['host'], port=self.ssh_config['port'],
                              password=self.ssh_config['password'], username=self.ssh_config['user'])
         self.data = self.get_data()
+        self.db = db
+        self.update_usercache()
+        sched = BackgroundScheduler(daemon=True)
+        sched.add_job(self.update_usercache,'interval',minutes=1440)
+        sched.start()
+        self.get_mark = get_mark
 
         @app.route('/api/srv/stats')
         def srv():
             self.data = self.get_data()
-
             return json.dumps(self.data)
 
         @app.route('/api/marks/plusnik', methods=['GET'])
         def plusnik():
-            return jsonify(get_mark(request.args['student']))
+            x = self.db.get_user_data(**get_user(request.remote_addr))
+            d = x['lastname'] + " " + x['firstname']
+            marks = get_mark(d)
+            ret = marks
+            tb = get_user(request.remote_addr)
+            tb.update({"table": "usermarkscache", "data": "matprakmark"})
+            lastmark = self.db.get_user_data(**tb)[-1]
+            ret.update({"change": marks['sum_marks'] - float(lastmark)})
+            return jsonify(ret)
 
     def ssh_command(self, cmd, sudo=False):
         if sudo:
@@ -68,3 +91,4 @@ class API:
             .strip(
                 f'{i}: ')})
         return ext
+ 

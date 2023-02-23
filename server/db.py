@@ -1,5 +1,14 @@
-from sqlalchemy import create_engine, MetaData, Table, String, Integer, Column
-from md5 import md5
+from sqlalchemy import create_engine, MetaData, Table, String, Integer, Column, select
+import hashlib
+
+
+def injection_scan(string):
+    kwords = [" ", "`", '*', ';', '(', ')']
+    for i in kwords:
+        if i in string:
+            return True
+    return False
+
 
 class DB:
     def __init__(self):
@@ -12,7 +21,7 @@ class DB:
 
         # Users table
         self.users_table = Table('users', self.metadata,
-                                 Column('id', Integer(), primary_key=True),
+                                 Column('user_id', Integer(), primary_key=True),
                                  Column('username', String()),
                                  Column('password', String())
                                  )
@@ -22,47 +31,38 @@ class DB:
             Column('user_id', Integer()),
             Column('mash_login', String()),
             Column('mash_password', String()),
+            Column('lastname', String()),
+            Column('firstname', String()),
         )
 
     def insert_user(self, username, password):
-        all_usernames = []
-        for i in self.get_all_users():
-            all_usernames.append(i[1])
+        if injection_scan(username):
+            return False
+        all_usernames = self.engine.execute(select([self.users_table.c.username])).fetchall()
         if username in all_usernames:
             return False
         insertion = self.users_table.insert().values(
             username=username,
-            password=md5(password)
+            password=hashlib.sha256(password.encode()).hexdigest()
         )
         self.conn.execute(insertion)
-
-    def get_all_users(self):
-        selection = self.users_table.select()
-        return self.conn.execute(selection).all()
+        return True
 
     def check_user(self, username, password):
-        selection = self.users_table.select().where(
+
+        selection = select([self.users_table.c.password]).where(
             self.users_table.c.username == username
         )
-        selection = self.conn.execute(selection).all()
+        if injection_scan(username):
+            return False
+        selection = self.conn.execute(f'SELECT `password` FROM `users` WHERE username="{username}"').fetchone()
         if len(selection) != 0:
             user = selection[0]
-            if user[2] == password:
+            if user == password:
                 return True
         return False
     
-    def get_user_data(self, username, password):
+    def get_user_data(self, username, password, table='userdata', data="*"):
         if not self.check_user(username, password):
             return False
-        selection = self.users_table.select().where(
-            self.users_table.c.username == username
-        )
-        selection = self.conn.execute(selection).all()
-        if len(selection) <= 0:
-            return False
-        id = selection[0][0]
-        selection = self.conn.execute(self.userdata_table.select().where(self.userdata_table.c.user_id == id)).all()
-        if len(selection) <= 0: return False
-        return selection[0]
-
-
+        return self.conn.execute(f"SELECT {data} from `{table}` join users using(user_id) WHERE username='{username}'").fetchone()

@@ -1,52 +1,47 @@
-from flask import Flask, request, url_for, redirect, abort
+from flask import Flask, request, url_for, redirect, abort, Response
 from gevent.pywsgi import WSGIServer
 from db import DB
 from api import API
 from srv import Srv
-import yaml
 import time
+from flask_cors import CORS
 
 app = Flask(__name__)
-authed = {
-}
+def get_current_user(ip):
+    return {"username": sessions[ip]["username"], "password": sessions[ip]["password"]}
+
 dev = True
 db = DB()
-api = API(app)
+CORS(app)
+api = API(app, get_current_user, db)
 srv = Srv(app, api, api.ssh_config)
-with open("../config/api_config.yaml", 'r') as stream:
-    config = yaml.safe_load(stream)
 sessions = {}
-
+@app.after_request
+def add_header(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept'
+    return response
 
 @app.before_request
 def check_referrer():
-    if request.remote_addr not in sessions:
-        sessions.update({request.remote_addr: {"last_reconnect": time.time(), 'fast_reconnects': 0}})
-    else:
-        if sessions[request.remote_addr]['fast_reconnects'] >= 10:
-            abort(403)
-        last_reconnect = sessions[request.remote_addr]['last_reconnect']
-        sessions[request.remote_addr]['last_reconnect'] = time.time()
-        if time.time() - last_reconnect < 5000:
-            sessions[request.remote_addr]['fast_reconnects'] += 1
-    if not request.referrer == config['referrer']:
-        abort(400)
-
-
-def ccheck():
-    ip = request.remote_addr
-    if request.path.split('/')[1] not in ['login', 'static']:
-        if ip not in authed:
-            return redirect('/login')
+    if request.path != "/api/auth":
+        if (request.remote_addr not in sessions):
+            return abort(403)
         else:
-            if not db.check_user(**authed[ip]):
-                return redirect('/login')
+            if sessions[request.remote_addr]['fast_reconnects'] >= 100:
+                abort(403)
+            last_reconnect = sessions[request.remote_addr]['last_reconnect']
+            sessions[request.remote_addr]['last_reconnect'] = time.time()
+            if time.time() - last_reconnect < 5000:
+                sessions[request.remote_addr]['fast_reconnects'] += 1
 
 
 @app.route('/api/auth', methods=['GET', 'POST'])
 def login():
     if request.method == "POST":
         if db.check_user(**{'username': request.form.get('user'), 'password': request.form.get('password')}):
+            if request.remote_addr not in sessions:
+                sessions.update({request.remote_addr: {"last_reconnect": time.time(), 'fast_reconnects': 0, 'username': request.form.get('user'), 'password': request.form.get('password')}})
             return "true"
         else:
             return 'false'
