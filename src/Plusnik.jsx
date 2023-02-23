@@ -24,8 +24,4 @@ function getMatprakPlusnikData() {
     
 }
 
-function GetLastMark() {
-    return getMatprakPlusnikData()
-}
-
 export { getMatprakPlusnikData, auth };
