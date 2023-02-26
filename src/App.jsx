@@ -1,7 +1,6 @@
 import { SideBar, SideBarLink } from './Components'
 import { IoMdNotifications } from 'react-icons/io'
 import { Home } from './Home';
-import { useState } from 'react';
 
 function App() {
     return (
