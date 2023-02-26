@@ -14,8 +14,8 @@ function AutoDiploma(props) {
                 {isCsv ?
                     <form action="/api/upload" className="flex flex-col items-center xl:mr-12">
                         <div className=" text-center mb-5">
-                            <Tab text="Форма" className="rounded-lg xl:rounded-none xl:rounded-l-lg xl:mb-0 mb-1" onClick={() => { checked() }} selected={!isCsv} />
-                            <Tab text="Csv файл" className="rounded-lg xl:rounded-none xl:rounded-r-lg max-sm:px-11" onClick={() => { checked() }} selected={isCsv} />
+                            <Tab text="Форма" className="rounded-lg xl:rounded-none xl:rounded-l-lg xl:mb-0 mb-1" onClick={ checked } selected={!isCsv} />
+                            <Tab text="Csv файл" className="rounded-lg xl:rounded-none xl:rounded-r-lg max-sm:px-11" onClick={ checked } selected={isCsv} />
                         </div>
                         <div className="flex items-center flex-col mb-14 xl:mt-12 max-sm:opacity-0 max-sm:absolute max-sm:-top-72">
                             <span className="text-xl font-light">Csv файл должен быть вида (разделитель - `):</span>
@@ -39,8 +39,8 @@ function AutoDiploma(props) {
                     :
                     <form action="/api/upload" className="flex flex-col xl:items-center mr-32 max-xl:w-full">
                         <div className=" text-center mb-5">
-                            <Tab text="Форма" className="rounded-lg xl:rounded-none xl:rounded-l-lg xl:mb-0 mb-1" onClick={() => { checked() }} selected={!isCsv} />
-                            <Tab text="Csv файл" className="rounded-lg xl:rounded-none xl:rounded-r-lg" onClick={() => { checked() }} selected={isCsv} />
+                            <Tab text="Форма" className="rounded-lg xl:rounded-none xl:rounded-l-lg xl:mb-0 mb-1" onClick={ checked } selected={!isCsv} />
+                            <Tab text="Csv файл" className="rounded-lg xl:rounded-none xl:rounded-r-lg" onClick={ checked } selected={isCsv} />
                         </div>
                         <div>
                             <span className="text-xl font-light">Шаблон: </span> <Input type="text" name="template" className="block mb-10 w-full" />
