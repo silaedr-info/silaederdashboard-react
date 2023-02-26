@@ -4,8 +4,8 @@ import { Input, ButtonSubmit, InputFile, Tab } from "./Components"
 function AutoDiploma(props) {
     const [isCsv, setIsCsv] = useState(false);
 
-    function checked(isChecked) {
-        setIsCsv(isChecked);
+    function checked() {
+        setIsCsv(!isCsv);
     }
 
     return (
@@ -14,18 +14,18 @@ function AutoDiploma(props) {
                 {isCsv ?
                     <form action="/api/upload" className="flex flex-col items-center xl:mr-12">
                         <div className=" text-center mb-5">
-                            <Tab text="Форма" className="rounded-lg xl:rounded-none xl:rounded-l-lg xl:mb-0 mb-1" onClick={() => { checked(!isCsv) }} selected={!isCsv} />
-                            <Tab text="Csv файл" className="rounded-lg xl:rounded-none xl:rounded-r-lg max-sm:px-11" onClick={() => { checked(isCsv) }} selected={isCsv} />
+                            <Tab text="Форма" className="rounded-lg xl:rounded-none xl:rounded-l-lg xl:mb-0 mb-1" onClick={() => { checked() }} selected={!isCsv} />
+                            <Tab text="Csv файл" className="rounded-lg xl:rounded-none xl:rounded-r-lg max-sm:px-11" onClick={() => { checked() }} selected={isCsv} />
                         </div>
                         <div className="flex items-center flex-col mb-14 xl:mt-12 max-sm:opacity-0 max-sm:absolute max-sm:-top-72">
                             <span className="text-xl font-light">Csv файл должен быть вида (разделитель - `):</span>
                             <table className="border-solid border-2 rounded-lg border-separate border-spacing-0 border-black mt-2 ">
                                 <thead className="border-solid">
                                     <tr>
-                                        <th className="border-solid border-gray-400 border-r-2 py-3 max-xl:px-2">Название диплома</th>
-                                        <th className="border-solid border-gray-400 border-r-2 max-xl:px-2">Количество дополнительных полей</th>
-                                        <th className="border-solid border-gray-400 border-r-2 max-xl:px-2">ФИО человека</th>
-                                        <th className="max-xl:px-2">Название проекта</th>
+                                        <th className="border-solid border-gray-400 border-r-2 py-3 px-2">Название диплома</th>
+                                        <th className="border-solid border-gray-400 border-r-2 px-2">Количество дополнительных полей</th>
+                                        <th className="border-solid border-gray-400 border-r-2 px-2">ФИО человека</th>
+                                        <th className="px-2">Название проекта</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -39,8 +39,8 @@ function AutoDiploma(props) {
                     :
                     <form action="/api/upload" className="flex flex-col xl:items-center mr-32 max-xl:w-full">
                         <div className=" text-center mb-5">
-                            <Tab text="Форма" className="rounded-lg xl:rounded-none xl:rounded-l-lg xl:mb-0 mb-1" onClick={() => { checked(isCsv) }} selected={!isCsv} />
-                            <Tab text="Csv файл" className="rounded-lg xl:rounded-none xl:rounded-r-lg" onClick={() => { checked(!isCsv) }} selected={isCsv} />
+                            <Tab text="Форма" className="rounded-lg xl:rounded-none xl:rounded-l-lg xl:mb-0 mb-1" onClick={() => { checked() }} selected={!isCsv} />
+                            <Tab text="Csv файл" className="rounded-lg xl:rounded-none xl:rounded-r-lg" onClick={() => { checked() }} selected={isCsv} />
                         </div>
                         <div>
                             <span className="text-xl font-light">Шаблон: </span> <Input type="text" name="template" className="block mb-10 w-full" />
