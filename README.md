@@ -18,10 +18,13 @@
 Эта команда автоматически оптимизирует React для деплоинга silaederdashboard.
 
 ## Для разработчиков:
+
 ### Установка линтера:
+
 ```
 npm run prepare
 npx husky add .husky/pre-commit "npx lint-staged"
 git add .husky/pre-commit
 ```
+
 Теперь линтер будет проверять код перед каждым коммитом.
