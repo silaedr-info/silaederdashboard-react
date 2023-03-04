@@ -1,52 +1,64 @@
 {
-  "name": "admin-design-react",
-  "version": "0.1.0",
-  "private": true,
-  "proxy": "http://localhost:5000",
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "chart.js": "^4.2.1",
-    "echarts-for-react": "^3.0.2",
-    "react": "^18.2.0",
-    "react-chartjs-2": "^5.2.0",
-    "react-dom": "^18.2.0",
-    "react-frame-component": "^5.2.6",
-    "react-icons": "^4.7.1",
-    "react-scripts": "5.0.1",
-    "react-sticky-el": "^2.0.9",
-    "styled-components": "^5.3.6",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "python3 src/py-parse.py & react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "tailwindcss": "^3.2.7"
-  },
-  "browser": {
-    "child_process": false
-  }
+    "name": "admin-design-react",
+    "version": "0.1.0",
+    "private": true,
+    "proxy": "http://localhost:5000",
+    "dependencies": {
+        "@testing-library/jest-dom": "^5.16.5",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/user-event": "^13.5.0",
+        "chart.js": "^4.2.1",
+        "echarts-for-react": "^3.0.2",
+        "eslint": "^8.35.0",
+        "react": "^18.2.0",
+        "react-chartjs-2": "^5.2.0",
+        "react-dom": "^18.2.0",
+        "react-frame-component": "^5.2.6",
+        "react-icons": "^4.7.1",
+        "react-scripts": "5.0.1",
+        "react-sticky-el": "^2.0.9",
+        "styled-components": "^5.3.6",
+        "web-vitals": "^2.1.4"
+    },
+    "scripts": {
+        "start": "python3 src/py-parse.py & react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "lint": "eslint .",
+        "format": "prettier --write .",
+        "prepare": "husky install"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "eslint-config-prettier": "^8.6.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.32.2",
+        "eslint-plugin-tailwindcss": "^3.10.1",
+        "husky": "^8.0.3",
+        "lint-staged": "^13.1.2",
+        "prettier": "2.8.4",
+        "prettier-plugin-tailwindcss": "^0.2.4",
+        "tailwindcss": "^3.2.7"
+    },
+    "browser": {
+        "child_process": false
+    }
 }

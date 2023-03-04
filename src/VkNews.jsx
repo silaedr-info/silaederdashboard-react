@@ -1,5 +1,5 @@
-import { CardListItem, CardList } from "./Components"
-import { useEffect, useState } from "react"
+import { CardListItem, CardList } from './Components';
+import { useEffect, useState } from 'react';
 
 function News() {
     const posts = [];
@@ -8,7 +8,7 @@ function News() {
 
     function setpst(json) {
         for (var i = 0; i < 5; i++) {
-            posts.push([json[i], json[i + "lnk"]])
+            posts.push([json[i], json[i + 'lnk']]);
         }
 
         if (!set) {
@@ -20,25 +20,42 @@ function News() {
 
     /* eslint-disable */
     useEffect(() => {
-        fetch("/posts.json").then((resp) => resp.json()).then((data) => {
-            setpst(data);
-        });
+        fetch('/posts.json')
+            .then((resp) => resp.json())
+            .then((data) => {
+                setpst(data);
+            });
         set = false;
-    }, [])
+    }, []);
     /* eslint-enable */
 
     return (
         <div>
-            <CardList className="mt-5 mb-10" name="Новости" desc={
-                <div>
-                    {pst.map((el) => (
-                        <CardListItem contents={<a target="_blank" rel="noreferrer" className="transition-all ease-in-out duration-500 hover:text-white text-blue-100" href={el[1]}>{el[0]}</a>} />
-                    ))}
-
-                </div>
-            } />
+            <CardList
+                className="mt-5 mb-10"
+                name="Новости"
+                desc={
+                    <div>
+                        {pst.map((el) => (
+                            <CardListItem
+                                key={el.key}
+                                contents={
+                                    <a
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="text-blue-100 transition-all duration-500 ease-in-out hover:text-white"
+                                        href={el[1]}
+                                    >
+                                        {el[0]}
+                                    </a>
+                                }
+                            />
+                        ))}
+                    </div>
+                }
+            />
         </div>
-    )
+    );
 }
 
-export { News }
+export { News };
