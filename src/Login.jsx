@@ -1,16 +1,27 @@
-import { ButtonSubmit, Input } from './Components'
+import { ButtonSubmit, Input } from './Components';
 
 function LoginPage(props) {
     return (
-        <div className={props.className + " bg-white flex items-center justify-center flex-col absolute top-0 w-screen h-screen z-20"}>
-            <h1 className='text-4xl font-normal mb-3'>Войти: </h1>
-            <form className='flex flex-col items-center bg-gray-200 py-4 px-10 rounded-xl'>
-                <div className='w-fit mb-5'><span className='font-light text-xl block text-center'>Логин: </span><Input /></div>
-                <div className='w-fit mb-4'><span className='font-light text-xl block text-center'>Пароль: </span><Input type="password" /></div>
+        <div
+            className={
+                props.className +
+                ' absolute top-0 z-20 flex h-screen w-screen flex-col items-center justify-center bg-white'
+            }
+        >
+            <h1 className="mb-3 text-4xl font-normal">Войти: </h1>
+            <form className="flex flex-col items-center rounded-xl bg-gray-200 py-4 px-10">
+                <div className="mb-5 w-fit">
+                    <span className="block text-center text-xl font-light">Логин: </span>
+                    <Input />
+                </div>
+                <div className="mb-4 w-fit">
+                    <span className="block text-center text-xl font-light">Пароль: </span>
+                    <Input type="password" />
+                </div>
                 <ButtonSubmit text="Войти" />
             </form>
         </div>
-    )
+    );
 }
 
-export { LoginPage }
+export { LoginPage };
