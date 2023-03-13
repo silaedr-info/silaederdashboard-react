@@ -31,3 +31,5 @@ config/server_ssh.yaml
 
 public/posts.json
 src/__pycache__
+
+src/secrets.py
