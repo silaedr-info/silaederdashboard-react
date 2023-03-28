@@ -27,7 +27,7 @@ public/posts.json
 src/__pycache__
 config/server_ssh.yaml
 /db
-.env
+/.env
 #db/data.db
 
 src/secrets.py

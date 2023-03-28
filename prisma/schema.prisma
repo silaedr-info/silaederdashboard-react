@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  id            Int         @id @default(autoincrement())
+  lastname      String      @db.Text
+  username      String      @db.Text
+  firstname     String      @db.Text
+  password_hash String      @db.Text
+  user_data     user_data[]
+}
+
+model user_token {
+  id      Int      @id @default(autoincrement())
+  expires DateTime @db.Timestamp(0)
+  token   String   @db.Text
+  userId  Int
+}
+
+model user_data {
+  id     Int  @id @default(autoincrement())
+  userId Int
+  user   user @relation(fields: [userId], references: [id])
+  grade  Int
+}
+
+model user_marks_cache {
+  id      Int      @id @default(autoincrement())
+  date    DateTime @default(now()) @db.Timestamp(0)
+  matprak Float
+  userId  Int
+}
