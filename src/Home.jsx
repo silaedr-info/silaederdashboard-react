@@ -1,54 +1,79 @@
 import { Card, CardCustom } from './Components';
-import { Doughnut } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Line } from 'react-chartjs-2';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+} from 'chart.js';
 import { News } from './VkNews';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 function Home(props) {
-    ChartJS.register(ArcElement, Tooltip, Legend);
+    ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
+    const [name, setName] = useState('');
+    const [summary, setSummary] = useState('');
+    const [data, setData] = useState({ labels: [1, 2, 3, 4], datasets: [] });
 
-    var data = {
-        labels: ['Средняя', 'Максимальная'],
-        datasets: [
-            {
-                label: 'Оценка',
-                data: [8, 10 - 8],
-                backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)'],
-            },
-        ],
-    };
-
-    var options = {
-        plugins: {
-            legend: {
-                labels: {
-                    font: {
-                        size: 10,
+    async function fetchData() {
+        return await axios.get('/api/whoami');
+    }
+    async function fetchMarks() {
+        return await axios.get('/api/getMarks');
+    }
+    useEffect(() => {
+        Promise.all([fetchData(), fetchMarks()]).then((res) => {
+            setName(res[0].data.firstname + ' ' + res[0].data.lastname);
+            let matprak = res[1].data.matprak;
+            let x = matprak[matprak.length - 1] - matprak[matprak.length - 2];
+            let summary = '';
+            if (x > 0) {
+                summary +=
+                    'Средняя оценка по матпраку улучшилась на ' +
+                    x +
+                    ' баллов, теперь оценка ' +
+                    matprak[matprak.length - 1] +
+                    '. Так держать!';
+            }
+            if (summary === '') {
+                summary = 'Новостей для вас нет!';
+            }
+            let xi = [];
+            for (let i = 0; i < matprak.length; i++) {
+                xi.push(i.toString());
+            }
+            setSummary(summary);
+            console.log(matprak);
+            setData({
+                labels: xi,
+                datasets: [
+                    {
+                        label: 'matprak',
+                        data: matprak,
+                        fill: false,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.4,
                     },
-                },
-            },
-        },
-    };
+                ],
+            });
+        });
+    }, []);
 
     return (
         <div className={props.className + ' ml-3'}>
             <div className="flex flex-col items-center sm:flex-row">
                 <Card
                     className="mr-0 mb-5 sm:mr-5 sm:mb-0"
-                    name="Сводка"
+                    name={'Добро пожаловать, ' + name}
                     img_src="/task.png"
-                    desc={
-                        <span>
-                            Оценки по предметам <strong>Алгебра, Русский язык</strong>{' '}
-                            стали лучше. На следующей неделе разбор листочка{' '}
-                            <strong>Вероятность</strong>. <strong>Поторопитесь</strong>, у
-                            Вас всё еще 0 баллов!
-                        </span>
-                    }
+                    desc={<span>{summary}</span>}
                 />
                 <CardCustom
-                    className="text-center"
-                    name="Средняя оценка за неделю"
-                    desc={<Doughnut data={data} options={options} width="200" />}
+                    className="mt-5 h-1/2 text-center"
+                    name={'График оценок по матпраку'}
+                    desc={<Line data={data} width="200" />}
                 />
             </div>
 

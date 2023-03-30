@@ -15,14 +15,14 @@ function Button(props) {
 }
 
 function ButtonSubmit(props) {
+    let classname =
+        'transform rounded-lg bg-black p-3 text-white transition-all duration-500 ease-in-out hover:-translate-y-1 hover:bg-gray-800 hover:shadow-2xl dark:bg-gray-300 dark:text-black dark:hover:bg-white dark:hover:shadow-gray-700';
     return (
         <button
             onClick={props.onClick}
+            disabled={props.disabled}
             type="submit"
-            className={
-                props.className +
-                ' transform rounded-lg bg-black p-3 text-white transition-all duration-500 ease-in-out hover:-translate-y-1 hover:bg-gray-800 hover:shadow-2xl dark:bg-gray-300 dark:text-black dark:hover:bg-white dark:hover:shadow-gray-700'
-            }
+            className={props.className + classname}
         >
             {props.text}
         </button>
@@ -247,7 +247,7 @@ function InputFile(props) {
 }
 
 function Tab(props) {
-    var selected = '';
+    let selected;
 
     if (props.selected) {
         selected = ' px-20 py-3 bg-black text-white';

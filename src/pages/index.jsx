@@ -1,10 +1,23 @@
-import { SideBar, SideBarLink } from './Components';
+import { SideBar, SideBarLink } from '../Components';
 import { IoMdNotifications } from 'react-icons/io';
-import { Home } from './Home';
+import { Home } from '../Home';
 import { useState } from 'react';
-import { AutoDiploma } from './AutoDiploma';
+import axios from 'axios';
+import { AutoDiploma } from '../AutoDiploma';
+import { useRouter } from 'next/router';
 
 function App() {
+    async function fetchLogin() {
+        return await axios.get('/api/checkLogin');
+    }
+    const router = useRouter();
+    useState(() => {
+        Promise.all([fetchLogin()]).then((res) => {
+            if (!res[0].data.success) {
+                router.push('/login');
+            }
+        });
+    }, []);
     const [active, setActive] = useState([true, false, false, false, false]);
 
     function ChNav(n) {
