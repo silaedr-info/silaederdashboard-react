@@ -14,13 +14,9 @@ const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
 let mark;
 
 async function loadSavedCredentialsIfExist() {
-    try {
-        const content = await fs.readFile(TOKEN_PATH);
-        const credentials = JSON.parse(content);
-        return google.auth.fromJSON(credentials);
-    } catch (err) {
-        return null;
-    }
+    const content = await fs.readFile(TOKEN_PATH);
+    const credentials = JSON.parse(content);
+    return google.auth.fromJSON(credentials);
 }
 async function saveCredentials(client) {
     const content = await fs.readFile(CREDENTIALS_PATH);

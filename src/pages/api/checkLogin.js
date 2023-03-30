@@ -18,7 +18,6 @@ export default async function login(req, res) {
                         success: true,
                         user_id: token_in_db[0].userId,
                     });
-                    return;
                 }
             }
         }

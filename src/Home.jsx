@@ -50,7 +50,7 @@ function Home(props) {
                 labels: xi,
                 datasets: [
                     {
-                        label: 'awdawdaw',
+                        label: 'matprak',
                         data: matprak,
                         fill: false,
                         borderColor: 'rgb(75, 192, 192)',

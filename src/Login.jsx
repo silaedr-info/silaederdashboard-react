@@ -61,7 +61,7 @@ function LoginPage(props) {
                 </div>
                 <ButtonSubmit text="Войти" disabled={submitted} />
             </form>
-            <ToastContainer position="bottom-center" theme="light" transition={Zoom} />
+            <ToastContainer transition={Zoom} />
         </div>
     );
 }

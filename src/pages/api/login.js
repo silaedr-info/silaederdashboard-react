@@ -9,7 +9,7 @@ export default async function login(req, res) {
     if (req.method === 'POST') {
         const username = req.body.username;
         const password = req.body.password;
-        let pass_hash = sha_js('sha256').update(password).digest('hex');
+        const pass_hash = sha_js('sha256').update(password).digest('hex');
         const user = await prisma.user.findMany({
             where: {
                 username: username,
@@ -29,21 +29,23 @@ export default async function login(req, res) {
                 user_token.length === 0 ||
                 user_token[0].expires.valueOf() < Date.now().valueOf()
             ) {
-                token = require('random-token')(32);
                 let expires = new Date();
                 expires.setDate(expires.getDate() + 60);
                 await prisma.user_token.create({
                     data: {
                         userId: user[0].id,
                         expires: expires,
-                        token: token,
                     },
                 });
+                token = await prisma.user_token.findMany({
+                    where: { userId: user[0].id },
+                    orderBy: { expires: 'desc' },
+                })[0].token;
             } else {
                 token = user_token[0].token;
             }
             setCookie('token', token, { req, res, maxAge: 31536000 });
         }
-        res.status(200).redirect('/login?status=success');
     }
+    res.status(200).redirect('/login?status=success');
 }
