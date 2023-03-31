@@ -27,15 +27,15 @@
 }
 
 .sidebar {
-    @apply h-full w-4/12 rounded-br-3xl rounded-tr-3xl bg-gray-200 dark:bg-gray-700 p-3 sm:w-2/12;
+    @apply h-full w-4/12 rounded-br-3xl rounded-tr-3xl bg-gray-200 p-3 dark:bg-gray-700 sm:w-2/12;
 }
 
 .sidebarLinkActive {
-    @apply w-full rounded-xl bg-black pt-3 pb-3 text-white transition-all duration-700 ease-in-out hover:bg-gray-800 dark:hover:bg-gray-900 hover:shadow-2xl;
+    @apply w-full rounded-xl bg-black pb-3 pt-3 text-white transition-all duration-700 ease-in-out hover:bg-gray-800 hover:shadow-2xl dark:hover:bg-gray-900;
 }
 
 .sidebarLink {
-    @apply w-full rounded-xl bg-gray-500 pt-3 pb-3 text-white transition-all duration-700 ease-in-out hover:bg-gray-700 dark:hover:bg-gray-600 hover:shadow-2xl;
+    @apply w-full rounded-xl bg-gray-500 pb-3 pt-3 text-white transition-all duration-700 ease-in-out hover:bg-gray-700 hover:shadow-2xl dark:hover:bg-gray-600;
 }
 
 .cardList {
@@ -51,15 +51,15 @@
 }
 
 .inputFile {
-    @apply rounded-lg border-2 border-none outline-none transition-all duration-300 ease-in-out file:mt-2 file:mr-3 file:transform file:cursor-pointer file:rounded-lg file:border-none file:bg-gray-600 file:p-2 file:text-white file:transition-all file:duration-500 file:ease-in-out hover:file:-translate-y-1 hover:file:bg-gray-800 hover:file:shadow-2xl focus:shadow-lg dark:file:bg-gray-300 dark:file:text-gray-600 dark:hover:file:bg-white dark:hover:file:shadow-gray-700 max-sm:text-white dark:text-white;
+    @apply rounded-lg border-2 border-none outline-none transition-all duration-300 ease-in-out file:mr-3 file:mt-2 file:transform file:cursor-pointer file:rounded-lg file:border-none file:bg-gray-600 file:p-2 file:text-white file:transition-all file:duration-500 file:ease-in-out hover:file:-translate-y-1 hover:file:bg-gray-800 hover:file:shadow-2xl focus:shadow-lg dark:text-white dark:file:bg-gray-300 dark:file:text-gray-600 dark:hover:file:bg-white dark:hover:file:shadow-gray-700 max-sm:text-white;
 }
 
 .tabSelected {
-    @apply bg-black dark:bg-gray-700 px-20 py-3 text-white;
+    @apply bg-black px-20 py-3 text-white dark:bg-gray-700;
 }
 
 .tab {
-    @apply bg-gray-500 dark:bg-gray-500 px-10 py-3 text-white hover:bg-gray-600;
+    @apply bg-gray-500 px-10 py-3 text-white hover:bg-gray-600 dark:bg-gray-500;
 }
 
 .spinner {

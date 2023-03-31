@@ -32,7 +32,7 @@ function News() {
     return (
         <div>
             <CardList
-                className="mt-5 mb-10"
+                className="mb-10 mt-5"
                 name="Новости"
                 desc={
                     <div>
