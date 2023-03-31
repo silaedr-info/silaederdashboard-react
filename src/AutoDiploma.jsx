@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Input, ButtonSubmit, InputFile, Tab } from './Components';
+import { Tab } from './Components';
 
 function AutoDiploma(props) {
     const [isCsv, setIsCsv] = useState(false);
@@ -31,32 +31,41 @@ function AutoDiploma(props) {
                             />
                         </div>
                         <div className="mb-14 flex flex-col items-center max-sm:absolute max-sm:-top-72 max-sm:opacity-0 xl:mt-12">
-                            <span className="text-xl font-light">
+                            <span className="text-xl font-light dark:text-white">
                                 Csv файл должен быть вида (разделитель - `):
                             </span>
-                            <table className="mt-2 border-separate border-spacing-0 rounded-lg border-2 border-solid border-black ">
+                            <table className="mt-2 border-separate border-spacing-0 rounded-lg border-2 border-solid border-black dark:border-white">
                                 <thead className="border-solid">
                                     <tr>
-                                        <th className="border-r-2 border-solid border-gray-400 py-3 px-2">
+                                        <th className="border-r-2 border-solid border-gray-400 px-2 py-3 dark:text-white">
                                             Название диплома
                                         </th>
-                                        <th className="border-r-2 border-solid border-gray-400 px-2">
+                                        <th className="border-r-2 border-solid border-gray-400 px-2 dark:text-white">
                                             Количество дополнительных полей
                                         </th>
-                                        <th className="border-r-2 border-solid border-gray-400 px-2">
+                                        <th className="border-r-2 border-solid border-gray-400 px-2 dark:text-white">
                                             ФИО человека
                                         </th>
-                                        <th className="px-2">Название проекта</th>
+                                        <th className="px-2 dark:text-white">
+                                            Название проекта
+                                        </th>
                                     </tr>
                                 </thead>
                             </table>
                         </div>
                         <div className="flex flex-col items-center">
-                            <span className="text-xl font-light">Файл: </span>{' '}
-                            <InputFile className="mb-5 block max-sm:w-[8.5rem]" />
+                            <span className="text-xl font-light dark:text-white">
+                                Файл:{' '}
+                            </span>{' '}
+                            <input
+                                type="file"
+                                className="inputFile mb-5 block max-sm:w-[8.5rem]"
+                            />
                         </div>
 
-                        <ButtonSubmit text="Создать" />
+                        <button type="submit" className="button">
+                            Создать
+                        </button>
                     </form>
                 ) : (
                     <form
@@ -78,33 +87,39 @@ function AutoDiploma(props) {
                             />
                         </div>
                         <div>
-                            <span className="text-xl font-light">Шаблон: </span>{' '}
-                            <Input
+                            <span className="text-xl font-light dark:text-white">
+                                Шаблон:{' '}
+                            </span>{' '}
+                            <input
                                 type="text"
                                 name="template"
-                                className="mb-10 block w-full"
+                                className="input mb-10 block w-full"
                             />
-                            <span className="text-xl font-light">
+                            <span className="text-xl font-light dark:text-white">
                                 Количество дополнительных полей:{' '}
                             </span>{' '}
-                            <Input
+                            <input
                                 type="number"
                                 name="have_project"
-                                className="mb-10 block w-full"
+                                className="input mb-10 block w-full"
                             />
-                            <span className="text-xl font-light">ФИО человека: </span>{' '}
-                            <Input
+                            <span className="text-xl font-light dark:text-white">
+                                ФИО человека:{' '}
+                            </span>{' '}
+                            <input
                                 type="text"
                                 name="name"
-                                className="mb-10 block w-full"
+                                className="input mb-10 block w-full"
                             />
-                            <span className="text-xl font-light">Название проекта: </span>{' '}
-                            <Input
+                            <span className="text-xl font-light dark:text-white">
+                                Название проекта:{' '}
+                            </span>{' '}
+                            <input
                                 type="text"
                                 name="project"
-                                className="mb-5 block w-full"
+                                className="input mb-5 block w-full"
                             />
-                            <ButtonSubmit text="Создать" />
+                            <button className="button">Создать</button>
                         </div>
                     </form>
                 )}
