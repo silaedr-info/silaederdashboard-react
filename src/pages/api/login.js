@@ -17,8 +17,8 @@ export default async function login(req, res) {
             },
         });
         if (user.length === 0) {
-            res.failure = true;
-            res.status(200).redirect('/login?status=error');
+            res.status(200).json({ success: false });
+            return;
         } else {
             const user_token = await prisma.user_token.findMany({
                 where: {
@@ -31,21 +31,18 @@ export default async function login(req, res) {
             ) {
                 let expires = new Date();
                 expires.setDate(expires.getDate() + 60);
-                await prisma.user_token.create({
+                const usertoken = await prisma.user_token.create({
                     data: {
                         userId: user[0].id,
                         expires: expires,
                     },
                 });
-                token = await prisma.user_token.findMany({
-                    where: { userId: user[0].id },
-                    orderBy: { expires: 'desc' },
-                })[0].token;
+                token = usertoken.token;
             } else {
                 token = user_token[0].token;
             }
             setCookie('token', token, { req, res, maxAge: 31536000 });
         }
     }
-    res.status(200).redirect('/');
+    res.status(200).json({ success: true, token: token });
 }

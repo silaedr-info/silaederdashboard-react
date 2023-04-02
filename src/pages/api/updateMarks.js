@@ -79,19 +79,16 @@ export default async function handler(req, res) {
     const grade = userData[0].grade;
     const lastname = user[0].lastname;
     const firstname = user[0].firstname;
-    authorize().then((client) => {
-        GetMarks(client, grade, lastname, firstname);
+    await authorize().then(async (client) => {
+        await GetMarks(client, grade, lastname, firstname);
     });
     const marks = await prisma.user_marks_cache.findMany({
         where: { userId: user[0].id },
         orderBy: [{ date: 'desc' }],
     });
-    console.log(marks.length);
     if (marks.length > 0) {
-        console.log(Date.now().valueOf() - marks[0].date.valueOf());
         if (Date.now().valueOf() - marks[0].date.valueOf() <= 21600000) {
             res.status(200).json({ matprak: marks[0].matprak });
-            console.log(111);
             return;
         }
     }

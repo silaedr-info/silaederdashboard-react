@@ -1,27 +1,53 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { toast, ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Spinner } from './Components';
+import confAxios from '../axios-conf';
+import axios from 'axios';
 
 function LoginPage(props) {
-    const { query } = useRouter();
+    const query = useRouter();
     const [submitted, setSubmitted] = useState(false);
-    function submit() {
-        setSubmitted(true);
+    const [login, setLogin] = useState({ username: '', password: '' });
+
+    async function postLogin() {
+        const formData = axios.toFormData({
+            username: login.username,
+            password: login.password,
+        });
+        return await confAxios({
+            method: 'POST',
+            url: '/api/login',
+            data: formData,
+        });
     }
-    useEffect(() => {
-        if (query.status === 'error') {
-            toast.error('Неверный логин или пароль', {
-                position: 'bottom-center',
-                autoClose: 5000,
-                closeOnClick: true,
-                draggable: true,
-                pauseOnHover: true,
-                theme: 'light',
-            });
-        }
-    }, [query]);
+
+    async function submit(event) {
+        event.preventDefault();
+        setSubmitted(true);
+        Promise.all([postLogin()]).then((resp) => {
+            if (resp[0].data.success) {
+                query.push('/');
+            } else {
+                toast.error('Неверный логин или пароль', {
+                    position: 'bottom-center',
+                    autoClose: 5000,
+                    closeOnClick: true,
+                    draggable: true,
+                    pauseOnHover: true,
+                    theme: 'light',
+                });
+                setSubmitted(false);
+            }
+        });
+    }
+
+    async function change(event) {
+        const name = event.target.name;
+        const value = event.target.value;
+        setLogin({ ...login, [name]: value });
+    }
 
     return (
         <div
@@ -34,20 +60,28 @@ function LoginPage(props) {
             <form
                 className="flex flex-col items-center rounded-xl bg-gray-200 px-10 py-4 dark:bg-gray-700"
                 onSubmit={submit}
-                action="/api/login"
-                method="POST"
             >
                 <div className="mb-5 w-fit">
                     <span className="block text-center text-xl font-light dark:text-white">
                         Логин:{' '}
                     </span>
-                    <input className="input" type="text" name="username" />
+                    <input
+                        className="input"
+                        type="text"
+                        name="username"
+                        onChange={change}
+                    />
                 </div>
                 <div className="mb-4 w-fit">
                     <span className="block text-center text-xl font-light dark:text-white">
                         Пароль:{' '}
                     </span>
-                    <input className="input" type="password" name="password" />
+                    <input
+                        className="input"
+                        type="password"
+                        name="password"
+                        onChange={change}
+                    />
                 </div>
                 <button className="button" disabled={submitted}>
                     {submitted ? (

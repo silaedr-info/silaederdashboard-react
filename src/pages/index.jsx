@@ -2,7 +2,7 @@ import { SideBar, SideBarLink, Spinner } from '../Components';
 import { IoMdNotifications } from 'react-icons/io';
 import { Home } from '../Home';
 import { useState } from 'react';
-import axios from 'axios';
+import axios from '../../axios-conf';
 import { AutoDiploma } from '../AutoDiploma';
 import { useRouter } from 'next/router';
 
@@ -17,13 +17,12 @@ function App() {
                 router.push('/login');
             } else {
                 var target = document.getElementById('first-time');
-
                 setTimeout(() => {
                     target.classList.add('opacity-0', '-z-30');
                 }, 1000);
             }
         });
-    }, []);
+    }, [router]);
     const [active, setActive] = useState([true, false, false, false, false]);
 
     function ChNav(n) {
