@@ -22,7 +22,6 @@
         "react-dom": "^18.2.0",
         "react-frame-component": "^5.2.6",
         "react-icons": "^4.7.1",
-        "react-scripts": "5.0.1",
         "react-sticky-el": "^2.0.9",
         "react-toastify": "^9.1.2",
         "sha.js": "^2.4.11",
@@ -30,8 +29,8 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
-        "start": "npx tailwindcss -i ./src/styles/input.css -o ./src/styles/global.css && (python3 src/py-parse.py & next start)",
-        "dev": "npx tailwindcss -i ./src/styles/input.css -o ./src/styles/global.css && (python3 src/py-parse.py & next dev)",
+        "start": "python3 src/py-parse.py & next start",
+        "dev": "python3 src/py-parse.py & next dev",
         "build": "next build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
@@ -58,15 +57,18 @@
         ]
     },
     "devDependencies": {
+        "autoprefixer": "^10.4.14",
         "eslint-config-prettier": "^8.6.0",
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-react": "^7.32.2",
         "eslint-plugin-tailwindcss": "^3.10.1",
         "husky": "^8.0.3",
         "lint-staged": "^13.1.2",
+        "postcss": "^8.4.21",
         "prettier": "2.8.4",
         "prettier-plugin-tailwindcss": "^0.2.4",
-        "tailwindcss": "^3.2.7"
+        "react-scripts": "^5.0.1",
+        "tailwindcss": "^3.3.1"
     },
     "browser": {
         "child_process": false

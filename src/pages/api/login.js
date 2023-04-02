@@ -47,5 +47,5 @@ export default async function login(req, res) {
             setCookie('token', token, { req, res, maxAge: 31536000 });
         }
     }
-    res.status(200).redirect('/login?status=success');
+    res.status(200).redirect('/');
 }

@@ -45,7 +45,6 @@ function Home(props) {
                 xi.push(i.toString());
             }
             setSummary(summary);
-            console.log(matprak);
             setData({
                 labels: xi,
                 datasets: [
@@ -62,10 +61,10 @@ function Home(props) {
     }, []);
 
     return (
-        <div className={props.className + ' ml-3'}>
+        <div className={props.className + ' sm:ml-3'} id={props.id}>
             <div className="flex flex-col items-center sm:flex-row">
                 <Card
-                    className="mr-0 mb-5 sm:mr-5 sm:mb-0"
+                    className="mb-5 mr-0 sm:mb-0 sm:mr-5"
                     name={'Добро пожаловать, ' + name}
                     img_src="/task.png"
                     desc={<span>{summary}</span>}
@@ -73,7 +72,26 @@ function Home(props) {
                 <CardCustom
                     className="mt-5 h-1/2 text-center"
                     name={'График оценок по матпраку'}
-                    desc={<Line data={data} width="200" />}
+                    desc={
+                        <Line
+                            data={data}
+                            width="200"
+                            options={{
+                                scales: {
+                                    x: {
+                                        ticks: {
+                                            display: false,
+                                        },
+                                    },
+                                    y: {
+                                        ticks: {
+                                            display: false,
+                                        },
+                                    },
+                                },
+                            }}
+                        />
+                    }
                 />
             </div>
 

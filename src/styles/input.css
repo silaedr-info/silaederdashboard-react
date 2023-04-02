@@ -1,3 +1,74 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button {
+    @apply transform rounded-lg bg-black p-3 text-white transition-all duration-500 ease-in-out hover:-translate-y-1 hover:bg-gray-800 hover:shadow-2xl disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:bg-black disabled:hover:shadow-none dark:bg-gray-300 dark:text-black dark:hover:bg-white dark:hover:shadow-gray-700 disabled:dark:opacity-60 disabled:dark:hover:bg-gray-300;
+}
+
+.buttonSimple {
+    @apply transform rounded-lg bg-black p-3 text-white transition-all duration-500 ease-in-out hover:bg-gray-800 hover:shadow-2xl dark:bg-gray-300 dark:text-black dark:hover:bg-white dark:hover:shadow-gray-700;
+}
+
+.navLinkActive {
+    @apply transform font-bold text-black overline decoration-2 transition-all duration-300 ease-in-out hover:text-slate-600 dark:text-gray-300 dark:hover:text-slate-400;
+}
+
+.navLink {
+    @apply transform text-black transition-all duration-300 ease-in-out hover:text-slate-600 dark:text-gray-300 dark:hover:text-slate-400;
+}
+
+.card {
+    @apply flex flex-col items-center rounded-lg bg-gray-100 p-7 shadow-md transition-all duration-500 ease-in-out hover:bg-gray-200 hover:bg-opacity-70 hover:shadow-xl dark:bg-gray-700 dark:shadow-slate-800 dark:hover:bg-gray-600 dark:hover:shadow-gray-800 sm:flex-row;
+}
+
+.cardCustom {
+    @apply flex flex-row items-center rounded-lg bg-gray-100 p-7 shadow-md transition-all duration-500 ease-in-out hover:bg-gray-200 hover:bg-opacity-70 hover:shadow-xl dark:bg-gray-700 dark:shadow-slate-800 dark:hover:bg-gray-600 dark:hover:shadow-gray-800;
+}
+
+.sidebar {
+    @apply w-4/12 rounded-br-3xl rounded-tr-3xl bg-gray-200 p-3 dark:bg-gray-700 max-sm:w-full sm:h-full sm:w-2/12;
+}
+
+.sidebarLinkActive {
+    @apply w-full rounded-xl bg-black pb-3 pt-3 text-white transition-all duration-700 ease-in-out hover:bg-gray-800 hover:shadow-2xl dark:hover:bg-gray-900 max-sm:text-xs;
+}
+
+.sidebarLink {
+    @apply w-full rounded-xl bg-gray-500 pb-3 pt-3 text-white transition-all duration-700 ease-in-out hover:bg-gray-700 hover:shadow-2xl dark:hover:bg-gray-600 max-sm:text-xs;
+}
+
+.cardList {
+    @apply flex flex-row items-center justify-center rounded-lg bg-gray-100 p-7 shadow-md transition-all duration-500 ease-in-out hover:bg-gray-200 hover:bg-opacity-70 hover:shadow-xl dark:bg-gray-700 dark:shadow-slate-800 dark:hover:bg-gray-600 dark:hover:shadow-gray-800;
+}
+
+.cardListItem {
+    @apply mt-5 flex flex-row items-center rounded-lg bg-gray-500 p-3 text-white shadow-md transition-all duration-500 ease-in-out dark:bg-gray-500 dark:shadow-slate-600 dark:hover:shadow-gray-600;
+}
+
+.input {
+    @apply rounded-lg border-2 border-solid border-gray-400 p-2 text-lg outline-none transition-all duration-300 ease-in-out hover:border-gray-600 focus:border-gray-600 focus:shadow-lg dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:hover:border-gray-300 dark:focus:border-gray-300 dark:focus:shadow-slate-800;
+}
+
+.inputFile {
+    @apply rounded-lg border-2 border-none outline-none transition-all duration-300 ease-in-out file:mr-3 file:mt-2 file:transform file:cursor-pointer file:rounded-lg file:border-none file:bg-gray-600 file:p-2 file:text-white file:transition-all file:duration-500 file:ease-in-out hover:file:-translate-y-1 hover:file:bg-gray-800 hover:file:shadow-2xl focus:shadow-lg dark:text-white dark:file:bg-gray-300 dark:file:text-gray-600 dark:hover:file:bg-white dark:hover:file:shadow-gray-700 max-sm:text-white;
+}
+
+.tabSelected {
+    @apply bg-black px-20 py-3 text-white dark:bg-gray-700;
+}
+
+.tab {
+    @apply bg-gray-500 px-10 py-3 text-white hover:bg-gray-600 dark:bg-gray-500;
+}
+
+.spinner {
+    border-radius: 50%;
+    animation: spinner 1s ease-in-out infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -32,10 +32,10 @@ function News() {
     return (
         <div>
             <CardList
-                className="mt-5 mb-10"
+                className="mb-10 mt-5"
                 name="Новости"
                 desc={
-                    <div>
+                    <div className="max-sm:pb-20">
                         {pst.map((el) => (
                             <CardListItem
                                 key={el.key}
@@ -43,7 +43,7 @@ function News() {
                                     <a
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="text-blue-100 transition-all duration-500 ease-in-out hover:text-white"
+                                        className="text-blue-100 transition-all duration-500 ease-in-out"
                                         href={el[1]}
                                     >
                                         {el[0]}
