@@ -25,7 +25,7 @@ function AutoDiploma(props) {
                             />
                             <Tab
                                 text="Csv файл"
-                                className="rounded-lg max-sm:px-11 xl:rounded-none xl:rounded-r-lg"
+                                className="mb-1 rounded-lg xl:mb-0 xl:rounded-none xl:rounded-l-lg"
                                 onClick={checked}
                                 selected={isCsv}
                             />
@@ -57,10 +57,7 @@ function AutoDiploma(props) {
                             <span className="text-xl font-light dark:text-white">
                                 Файл:{' '}
                             </span>{' '}
-                            <input
-                                type="file"
-                                className="inputFile mb-5 block max-sm:w-[8.5rem]"
-                            />
+                            <input type="file" className="inputFile mb-5 block" />
                         </div>
 
                         <button type="submit" className="button">
@@ -126,7 +123,7 @@ function AutoDiploma(props) {
                 <img
                     src="/ex.png"
                     alt="diploma"
-                    className="my-5 rounded-md xl:my-0 xl:w-[35%]"
+                    className="my-5 rounded-md max-sm:mb-20 xl:my-0 xl:w-[35%]"
                 />
             </div>
         </main>

@@ -27,19 +27,19 @@
 }
 
 .sidebar {
-    @apply h-full w-4/12 rounded-br-3xl rounded-tr-3xl bg-gray-200 p-3 dark:bg-gray-700 sm:w-2/12;
+    @apply sm:h-full max-sm:w-full w-4/12 rounded-br-3xl rounded-tr-3xl bg-gray-200 p-3 dark:bg-gray-700 sm:w-2/12;
 }
 
 .sidebarLinkActive {
-    @apply w-full rounded-xl bg-black pb-3 pt-3 text-white transition-all duration-700 ease-in-out hover:bg-gray-800 hover:shadow-2xl dark:hover:bg-gray-900;
+    @apply w-full rounded-xl bg-black pb-3 pt-3 text-white transition-all duration-700 ease-in-out hover:bg-gray-800 hover:shadow-2xl dark:hover:bg-gray-900 max-sm:text-xs;
 }
 
 .sidebarLink {
-    @apply w-full rounded-xl bg-gray-500 pb-3 pt-3 text-white transition-all duration-700 ease-in-out hover:bg-gray-700 hover:shadow-2xl dark:hover:bg-gray-600;
+    @apply w-full rounded-xl bg-gray-500 pb-3 pt-3 text-white transition-all duration-700 ease-in-out hover:bg-gray-700 hover:shadow-2xl dark:hover:bg-gray-600 max-sm:text-xs;
 }
 
 .cardList {
-    @apply flex flex-row items-center rounded-lg bg-gray-100 p-7 shadow-md transition-all duration-500 ease-in-out hover:bg-gray-200 hover:bg-opacity-70 hover:shadow-xl dark:bg-gray-700 dark:shadow-slate-800 dark:hover:bg-gray-600 dark:hover:shadow-gray-800;
+    @apply flex flex-row items-center justify-center rounded-lg bg-gray-100 p-7 shadow-md transition-all duration-500 ease-in-out hover:bg-gray-200 hover:bg-opacity-70 hover:shadow-xl dark:bg-gray-700 dark:shadow-slate-800 dark:hover:bg-gray-600 dark:hover:shadow-gray-800;
 }
 
 .cardListItem {

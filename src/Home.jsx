@@ -61,7 +61,7 @@ function Home(props) {
     }, []);
 
     return (
-        <div className={props.className + ' ml-3'}>
+        <div className={props.className + ' sm:ml-3'} id={props.id}>
             <div className="flex flex-col items-center sm:flex-row">
                 <Card
                     className="mb-5 mr-0 sm:mb-0 sm:mr-5"

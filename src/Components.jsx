@@ -80,7 +80,7 @@ function SideBarLink(props) {
 function CardList(props) {
     return (
         <div className={props.className + ' cardList'}>
-            <div className="flex w-full flex-col items-center">
+            <div className="flex flex-col items-center">
                 <h1 className="text-center text-2xl font-medium dark:text-gray-300">
                     {props.name}
                 </h1>
