@@ -27,7 +27,7 @@
 }
 
 .sidebar {
-    @apply sm:h-full max-sm:w-full w-4/12 rounded-br-3xl rounded-tr-3xl bg-gray-200 p-3 dark:bg-gray-700 sm:w-2/12;
+    @apply w-4/12 rounded-br-3xl rounded-tr-3xl bg-gray-200 p-3 dark:bg-gray-700 max-sm:w-full sm:h-full sm:w-2/12;
 }
 
 .sidebarLinkActive {
