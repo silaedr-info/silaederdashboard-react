@@ -24,7 +24,7 @@
         "react-icons": "^4.7.1",
         "react-sticky-el": "^2.0.9",
         "react-toastify": "^9.1.2",
-        "sha.js": "^2.4.11",
+        "sha.js": "^2.4.12",
         "styled-components": "^5.3.6",
         "web-vitals": "^2.1.4"
     },
